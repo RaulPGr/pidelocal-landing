@@ -21,7 +21,7 @@ type FAQ = { q: string; a: string };
 const BUSINESS = {
   // 🎯 Segmento y zona objetivo (se usa en textos/SEO ligero dentro de la página)
   audience: 'establecimientos de comida para llevar',
-  area: 'Murcia y alrededores',
+  area: '',
 
   // 📧 Contacto
   email: 'pidelocal.contacto@gmail.com', // ← cambia cuando quieras
