@@ -12,7 +12,7 @@ import { useMemo, useState, useEffect } from 'react';
 
 // ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
 // Sustituye por TU URL que termina en /exec
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzZBZvyOL8YdLwT4DIZJZLa9AXxKT_sO2idCOJQkKgUdCvybFtOWHwWF8JFCDeaFLZ8/exec';
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzZBZvyOL8YdLwT4DIZJZLa9AXxKT_sO2idCOJQkKgUdCvybFtOWHwWF8JFCDeaFLZ8/exec';
 
 // (Opcional) Token sencillo para “firmar” la petición.
 // Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
