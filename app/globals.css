@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tipografía base y colores por defecto */
+:root{
+  --orange:#D4572A;
+  --green:#2FA24D;
+}
+html, body {
+  height: 100%;
+}
+body{
+  @apply bg-brand-light text-brand-dark antialiased;
+}
