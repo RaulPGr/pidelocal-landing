@@ -1,9 +1,11 @@
 /* app/layout.tsx
-   Layout raíz de la landing. Define metadatos, tipografías y estilos globales.
+   Layout raíz de la landing. Define metadatos, tipografías, estilos globales
+   y añade Google Analytics.
 */
 import type { Metadata } from 'next'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Script from 'next/script' // Importamos Script para Analytics
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +26,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EH2DBM9Y3"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EH2DBM9Y3');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
