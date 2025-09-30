@@ -34,8 +34,8 @@ export default function Page() {
       ],
     },
     contact: {
-      email: 'hola@pidelocal.com',
-      whatsapp: 'https://wa.me/34XXXXXXXXX',
+      email: 'pidelocal.contacto@gmail.com',
+      whatsapp: '',
     },
     assets: {
       logo: '/brand/logo-pidelocal.png',
@@ -295,11 +295,18 @@ export default function Page() {
                   {sending ? 'Abriendo tu email…' : 'Enviar solicitud'}
                 </button>
 
-                <a target="_blank" rel="noreferrer"
-                   href={SITE.contact.whatsapp}
-                   className="rounded-xl border px-5 py-3 font-semibold hover:bg-brand-light">
+                {/* Enlace rápido a WhatsApp (opcional) */}
+                  {SITE.contact.whatsapp && (
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={SITE.contact.whatsapp}
+                    className="rounded-xl border px-5 py-3 font-semibold hover:bg-brand-light"
+                  >
                   Hablar por WhatsApp
-                </a>
+                  </a>
+)}
+
               </div>
             </form>
 
