@@ -1,8 +1,8 @@
 /* app/page.tsx
    Landing de PideLocal — Next.js App Router + Tailwind.
-   ✅ Adaptada al cuestionario de Raúl (Murcia, comida para llevar, beneficios, garantías, CTA, FAQs)
+   ✅ Sin referencias geográficas (apto para cualquier cliente)
    ✅ 3 planes: Starter / Medium / Premium + Implantación única
-   ✅ Eventos GA4 (generate_lead) ya cableados en CTAs y formulario
+   ✅ Eventos GA4 (generate_lead) cableados en CTAs y formulario
    ✅ Código MUY comentado para editar precios, emails, textos e imágenes
 */
 
@@ -19,10 +19,6 @@ type FAQ = { q: string; a: string };
 // Cambia valores aquí y se reflejan en toda la landing.
 // ===============================
 const BUSINESS = {
-  // 🎯 Segmento y zona objetivo (se usa en textos/SEO ligero dentro de la página)
-  audience: 'establecimientos de comida para llevar',
-  area: '',
-
   // 📧 Contacto
   email: 'pidelocal.contacto@gmail.com', // ← cambia cuando quieras
   whatsapp: '', // ← déjalo vacío para ocultar el botón de WhatsApp
@@ -54,7 +50,7 @@ const BUSINESS = {
     demo3: '/brand/demo-checkout.png',
   },
 
-  // 🧾 Textos “hero” y propuesta de valor
+  // 🧾 Textos “hero” y propuesta de valor (sin mención geográfica)
   hero: {
     title: 'Tu restaurante online en minutos',
     subtitle:
@@ -83,7 +79,6 @@ const FEATURES: Feature[] = [
   { title: 'Pagos con tarjeta y efectivo', desc: 'Premium permite cobro con tarjeta online (comisiones Stripe). Efectivo disponible en Medium/Premium.' },
   { title: 'Panel de gestión sencillo', desc: 'Edita tu carta, agota stock, confirma pedidos sin complicaciones.' },
   { title: 'Conecta tu dominio y SEO básico', desc: '100% tu marca y dominio propio. Posicionamiento básico incluido.' },
-  { title: 'Atrae nuevas generaciones', desc: 'Los clientes jóvenes prefieren pedir online: aumenta tu alcance.' },
 ];
 
 // ===============================
@@ -96,14 +91,13 @@ const STEPS: Step[] = [
 ];
 
 // ===============================
-// 🔧 FAQs (preguntas frecuentes)
+// 🔧 FAQs (preguntas frecuentes) — sin zona
 // ===============================
 const FAQS: FAQ[] = [
   { q: '¿Hay permanencia?', a: 'No. Funcionamos mes a mes. (Puedes aprovechar descuentos contratando 3 meses al inicio).' },
   { q: '¿Cargáis nuestro menú?', a: 'Sí. Durante la implantación te ayudamos con la carga inicial.' },
   { q: '¿Puedo usar mi dominio?', a: 'Sí, conectamos tu dominio (ej. tudominio.com) a tu web.' },
   { q: '¿Pagos con tarjeta?', a: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' },
-  { q: '¿Qué zona cubrís?', a: `Priorizamos ${BUSINESS.area}. Escríbenos si estás en otra zona.` },
 ];
 
 // ===============================
@@ -217,9 +211,6 @@ export default function Page() {
                 <p className="mt-5 text-lg/relaxed text-white/90">
                   {BUSINESS.hero.subtitle}
                 </p>
-                <p className="mt-3 text-sm text-white/80">
-                  Pensado para {BUSINESS.audience}. Prioridad: {BUSINESS.area}.
-                </p>
 
                 <div className="mt-8 flex items-center gap-3">
                   {/* CTA hero — evento GA4 */}
@@ -265,7 +256,7 @@ export default function Page() {
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((f, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-              <div className="text-3xl mb-3 select-none">{['🛒','⚡','📱','💳','🧩','🔗','🎯'][i] || '✨'}</div>
+              <div className="text-3xl mb-3 select-none">{['🛒','⚡','📱','💳','🧩','🔗'][i] || '✨'}</div>
               <h3 className="font-semibold">{f.title}</h3>
               <p className="text-sm mt-2 text-brand-dark/80">{f.desc}</p>
             </div>
