@@ -10,6 +10,15 @@
 
 import { useMemo, useState, useEffect } from 'react';
 
+// ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
+// Sustituye por TU URL que termina en /exec
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzZBZvyOL8YdLwT4DIZJZLa9AXxKT_sO2idCOJQkKgUdCvybFtOWHwWF8JFCDeaFLZ8/exec';
+
+// (Opcional) Token sencillo para “firmar” la petición.
+// Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
+const SHEETS_SECRET = '';
+
+
 type Feature = { title: string; desc: string };
 type Step = { num: string; title: string; desc: string };
 type FAQ = { q: string; a: string };
@@ -141,18 +150,48 @@ export default function Page() {
   }, []);
 
   // ✉️ Envío sin backend: abre el cliente de correo (mailto)
-  const handleContact = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSending(true);
-    sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
+  const handleContact = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setSending(true);
 
-    const subject = encodeURIComponent(`Demo PideLocal - ${form.negocio || form.nombre}`);
-    const body = encodeURIComponent(
-      `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
-    );
-    window.location.href = `mailto:${BUSINESS.email}?subject=${subject}&body=${body}`;
-    setTimeout(() => setSending(false), 800);
-  };
+  // GA: registra intento de envío
+  sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
+
+  // 1) Guardar en Google Sheets (no bloquea el mailto si falla)
+  try {
+    await fetch(SHEETS_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nombre: form.nombre,
+        email: form.email,
+        negocio: form.negocio,
+        mensaje: form.mensaje,
+        fuente: 'landing',
+        userAgent: typeof window !== 'undefined' ? navigator.userAgent : '',
+        page: typeof window !== 'undefined' ? window.location.href : '',
+        // opcional: si usas token en el Apps Script
+        secret: SHEETS_SECRET || undefined,
+      }),
+      // Si el usuario cierra la pestaña rápido, intenta enviar igual
+      keepalive: true,
+    });
+    sendGA('lead_saved', { method: 'sheets_webhook' });
+  } catch (err) {
+    console.warn('No se pudo guardar en Sheets:', err);
+    sendGA('lead_saved_error', { reason: String(err) });
+  }
+
+  // 2) Mailto como confirmación/backup
+  const subject = encodeURIComponent(`Demo PideLocal - ${form.negocio || form.nombre}`);
+  const body = encodeURIComponent(
+    `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
+  );
+  window.location.href = `mailto:${BUSINESS.email}?subject=${subject}&body=${body}`;
+
+  setTimeout(() => setSending(false), 800);
+};
+
 
   return (
     <main className="min-h-screen bg-brand-light text-brand-dark">
