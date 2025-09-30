@@ -523,26 +523,28 @@ export default function Page() {
         </div>
       </section>
 
-        {/* ====== FOOTER ====== */}
-            <footer className="border-t bg-white">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <img src={BUSINESS.assets.icon} alt="icon" className="h-6 w-6" />
-                  <span className="text-sm">&copy; {year} PideLocal. Todos los derechos reservados.</span>
-                </div>
-                <div className="text-sm flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <a href={`mailto:${BUSINESS.email}`} className="hover:text-brand-green">Contacto</a>
-                  <span className="opacity-50">·</span>
-                  <a href="#precios" className="hover:text-brand-green">Precios</a>
-                  <span className="opacity-50">·</span>
-                  <a href="/(legal)/aviso-legal" className="hover:text-brand-green">Aviso legal</a>
-                  <span className="opacity-50">·</span>
-                  <a href="/(legal)/privacidad" className="hover:text-brand-green">Privacidad</a>
-                  <span className="opacity-50">·</span>
-                  <a href="/(legal)/cookies" className="hover:text-brand-green">Cookies</a>
-                </div>
-              </div>
-            </footer>
+       {/* ====== FOOTER (en app/page.tsx) ====== */}
+<footer className="border-t bg-white">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div className="flex items-center gap-3">
+      <img src={BUSINESS.assets.icon} alt="icon" className="h-6 w-6" />
+      <span className="text-sm">&copy; {year} PideLocal. Todos los derechos reservados.</span>
+    </div>
+    <div className="text-sm flex flex-wrap items-center gap-x-3 gap-y-2">
+      <a href={`mailto:${BUSINESS.email}`} className="hover:text-brand-green">Contacto</a>
+      <span className="opacity-50">·</span>
+      <a href="#precios" className="hover:text-brand-green">Precios</a>
+      <span className="opacity-50">·</span>
+      {/* 👇 enlaces correctos (sin el grupo) */}
+      <a href="/aviso-legal" className="hover:text-brand-green">Aviso legal</a>
+      <span className="opacity-50">·</span>
+      <a href="/privacidad" className="hover:text-brand-green">Privacidad</a>
+      <span className="opacity-50">·</span>
+      <a href="/cookies" className="hover:text-brand-green">Cookies</a>
+    </div>
+  </div>
+</footer>
+
 
     </main>
   );
