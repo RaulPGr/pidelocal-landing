@@ -1,11 +1,11 @@
 /* app/page.tsx
    Landing de PideLocal — Next.js App Router + Tailwind.
-   TODO: coloca tus imágenes en /public/brand/ y ajusta las rutas de <img>.
+   Versión con GA4 robusto: cola de eventos + logs + evento debug_test.
 */
 
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 type Feature = { title: string; desc: string };
 type Step = { num: string; title: string; desc: string };
@@ -72,22 +72,45 @@ export default function Page() {
   const [form, setForm] = useState({ nombre: '', email: '', negocio: '', mensaje: '' });
 
   /* ============================================================
-     📊 GA4 helper — dispara eventos si gtag() está disponible.
-     Úsalo como: sendGA('generate_lead', { location: 'hero' })
+     📊 GA4 robusto: cola + logs para asegurar envío de eventos
      ============================================================ */
+  const pendingGA: Array<{ name: string; params: Record<string, any> }> = [];
+  const flushGA = () => {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && window.gtag) {
+      while (pendingGA.length) {
+        const e = pendingGA.shift()!;
+        // @ts-ignore
+        window.gtag('event', e.name, e.params);
+        console.log('[GA4] enviado (flush):', e.name, e.params);
+      }
+    }
+  };
+
   const sendGA = (name: string, params: Record<string, any> = {}) => {
     // @ts-ignore
     if (typeof window !== 'undefined' && window.gtag) {
       // @ts-ignore
       window.gtag('event', name, params);
+      console.log('[GA4] enviado:', name, params);
+    } else {
+      pendingGA.push({ name, params });
+      console.log('[GA4] encolado (gtag no listo):', name, params);
     }
   };
 
-  // Envío sin backend: compone un mailto. Puedes cambiarlo a n8n cuando quieras.
+  // Intenta vaciar la cola periódicamente y envía un evento de prueba
+  useEffect(() => {
+    const t = setInterval(flushGA, 300);
+    sendGA('debug_test', { ts: Date.now(), page: 'landing' });
+    return () => clearInterval(t);
+  }, []);
+
+  // Envío sin backend: compone un mailto. (Puedes migrar a n8n cuando quieras.)
   const handleContact = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    // Opcional: marca el envío como lead también
+    // Marca el envío como lead también
     sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
 
     const subject = encodeURIComponent(`Demo ${SITE.name} - ${form.negocio || form.nombre}`);
