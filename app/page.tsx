@@ -71,10 +71,25 @@ export default function Page() {
   const [sending, setSending] = useState(false);
   const [form, setForm] = useState({ nombre: '', email: '', negocio: '', mensaje: '' });
 
+  /* ============================================================
+     📊 GA4 helper — dispara eventos si gtag() está disponible.
+     Úsalo como: sendGA('generate_lead', { location: 'hero' })
+     ============================================================ */
+  const sendGA = (name: string, params: Record<string, any> = {}) => {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && window.gtag) {
+      // @ts-ignore
+      window.gtag('event', name, params);
+    }
+  };
+
   // Envío sin backend: compone un mailto. Puedes cambiarlo a n8n cuando quieras.
   const handleContact = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+    // Opcional: marca el envío como lead también
+    sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
+
     const subject = encodeURIComponent(`Demo ${SITE.name} - ${form.negocio || form.nombre}`);
     const body = encodeURIComponent(
       `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de ${SITE.name}`
@@ -102,9 +117,10 @@ export default function Page() {
             <a href="#faq" className="hover:text-brand-green">FAQ</a>
           </nav>
 
-          {/* CTA principal */}
+          {/* CTA principal (Navbar) — evento GA4 */}
           <a
             href={SITE.ctaPrimary.href}
+            onClick={() => sendGA('generate_lead', { location: 'navbar', label: SITE.ctaPrimary.label })}
             className="hidden md:inline-block rounded-xl px-4 py-2 text-white font-medium shadow"
             style={{ background: 'linear-gradient(135deg, var(--orange), var(--green))' }}
           >
@@ -141,8 +157,10 @@ export default function Page() {
                   {SITE.sub}
                 </p>
                 <div className="mt-8 flex items-center gap-3">
+                  {/* CTA hero — evento GA4 */}
                   <a
                     href={SITE.ctaPrimary.href}
+                    onClick={() => sendGA('generate_lead', { location: 'hero', label: SITE.ctaPrimary.label })}
                     className="rounded-xl bg-white text-brand-dark px-5 py-3 font-semibold hover:opacity-95 shadow"
                   >
                     {SITE.ctaPrimary.label}
@@ -252,8 +270,10 @@ export default function Page() {
               <ul className="mt-4 text-sm space-y-2">
                 {SITE.pricing.bullets.map((b, i) => <li key={i}>✓ {b}</li>)}
               </ul>
+              {/* CTA precios — evento GA4 */}
               <a
                 href="#contacto"
+                onClick={() => sendGA('generate_lead', { location: 'pricing', label: 'Empezar ahora' })}
                 className="mt-6 inline-block rounded-xl px-5 py-3 font-semibold text-white shadow"
                 style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}
               >
