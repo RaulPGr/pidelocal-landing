@@ -34,8 +34,8 @@ export default function Page() {
       ],
     },
     contact: {
-      email: 'pidelocal.contacto@gmail.com',
-      whatsapp: '',
+      email: 'pidelocal.contacto@gmail.com', // ← cambia por tu email real
+      whatsapp: '', // ← déjalo vacío para ocultar el botón de WhatsApp
     },
     assets: {
       logo: '/brand/logo-pidelocal.png',
@@ -71,6 +71,7 @@ export default function Page() {
   const [sending, setSending] = useState(false);
   const [form, setForm] = useState({ nombre: '', email: '', negocio: '', mensaje: '' });
 
+  // Envío sin backend: compone un mailto. Puedes cambiarlo a n8n cuando quieras.
   const handleContact = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
@@ -88,12 +89,12 @@ export default function Page() {
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 flex items-center justify-between">
           {/* LOGO: ajusta la ruta en SITE.assets.logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a href="#" className="flex items-center gap-3" aria-label="Inicio">
             <img src={SITE.assets.logo} alt={SITE.name} className="h-8 w-auto" />
             <span className="font-semibold">{SITE.name}</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav className="hidden md:flex items-center gap-6 text-sm" aria-label="Principal">
             <a href="#features" className="hover:text-brand-green">Beneficios</a>
             <a href="#como-funciona" className="hover:text-brand-green">Cómo funciona</a>
             <a href="#ejemplos" className="hover:text-brand-green">Ejemplos</a>
@@ -101,59 +102,66 @@ export default function Page() {
             <a href="#faq" className="hover:text-brand-green">FAQ</a>
           </nav>
 
-          <a href={SITE.ctaPrimary.href} className="hidden md:inline-block rounded-xl px-4 py-2 text-white font-medium"
-             style={{ background: 'linear-gradient(135deg, var(--orange), var(--green))' }}>
+          {/* CTA principal */}
+          <a
+            href={SITE.ctaPrimary.href}
+            className="hidden md:inline-block rounded-xl px-4 py-2 text-white font-medium shadow"
+            style={{ background: 'linear-gradient(135deg, var(--orange), var(--green))' }}
+          >
             {SITE.ctaPrimary.label}
           </a>
         </div>
       </header>
 
+      {/* CSS vars para el degradado sin tocar tailwind config */}
       <style>{`:root{--orange:#D4572A;--green:#2FA24D}`}</style>
 
       {/* ====== HERO ====== */}
       <section className="relative overflow-hidden">
+        {/* Fondo de marca + scrim para contraste */}
         <div className="absolute inset-0 -z-10">
-  {/* Degradado de marca */}
-  <div
-    className="absolute inset-0"
-    style={{ background: 'linear-gradient(135deg, #C14F25 0%, #238E41 100%)' }} // un pelín más oscuro
-  />
-  {/* Scrim para mejorar contraste del texto en la parte izquierda */}
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.45),_transparent_60%)]" />
-</div>
+          {/* Degradado (un poco más oscuro para profundidad) */}
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(135deg, #C14F25 0%, #238E41 100%)' }}
+          />
+          {/* Scrim: oscurece sutilmente la izquierda para mejorar legibilidad */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.5),_transparent_60%)]" />
+        </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 md:py-28 text-white">
           <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Tarjeta de texto (translúcida) */}
             <div>
-  <div className="max-w-2xl bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10">
-    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-sm">
-      {SITE.tagline}
-    </h1>
-    <p className="mt-5 text-lg/relaxed text-white/95">
-      {SITE.sub}
-    </p>
-    <div className="mt-8 flex items-center gap-3">
-      <a
-        href={SITE.ctaPrimary.href}
-        className="rounded-xl bg-white text-brand-dark px-5 py-3 font-semibold hover:opacity-95"
-      >
-        {SITE.ctaPrimary.label}
-      </a>
-      <a
-        href={SITE.ctaSecondary.href}
-        className="rounded-xl border border-white/70 px-5 py-3 font-semibold hover:bg-white/10 text-white"
-      >
-        {SITE.ctaSecondary.label}
-      </a>
-    </div>
-    <div className="mt-8 flex items-center gap-4 opacity-90">
-      <img src={SITE.assets.icon} alt="Icono PideLocal" className="h-8 w-8" />
-      <span className="text-sm text-white/90">Sin comisiones por pedido • 100% tu marca</span>
-    </div>
-  </div>
-</div>
+              <div className="max-w-2xl bg-black/15 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/20 shadow-lg">
+                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow tracking-tight [text-wrap:balance]">
+                  {SITE.tagline}
+                </h1>
+                <p className="mt-5 text-lg/relaxed text-white/90">
+                  {SITE.sub}
+                </p>
+                <div className="mt-8 flex items-center gap-3">
+                  <a
+                    href={SITE.ctaPrimary.href}
+                    className="rounded-xl bg-white text-brand-dark px-5 py-3 font-semibold hover:opacity-95 shadow"
+                  >
+                    {SITE.ctaPrimary.label}
+                  </a>
+                  <a
+                    href={SITE.ctaSecondary.href}
+                    className="rounded-xl border border-white/70 px-5 py-3 font-semibold hover:bg-white/10 text-white"
+                  >
+                    {SITE.ctaSecondary.label}
+                  </a>
+                </div>
+                <div className="mt-8 flex items-center gap-4 opacity-90">
+                  <img src={SITE.assets.icon} alt="Icono PideLocal" className="h-8 w-8" />
+                  <span className="text-sm text-white/90">Sin comisiones por pedido • 100% tu marca</span>
+                </div>
+              </div>
+            </div>
 
-
+            {/* Mockup/imagen */}
             <div className="hidden md:block">
               <div className="bg-white/95 rounded-2xl p-3 shadow-xl">
                 <img src={SITE.assets.heroMock} alt="Ejemplo de web PideLocal" className="w-full h-auto rounded-xl" />
@@ -165,7 +173,7 @@ export default function Page() {
 
       {/* ====== BENEFICIOS ====== */}
       <section id="features" className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Beneficios para tu negocio</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Beneficios para tu negocio</h2>
         <p className="text-center mt-3 text-brand-dark/80">Lo importante: vender más y simplificar tu día a día.</p>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -182,12 +190,14 @@ export default function Page() {
       {/* ====== CÓMO FUNCIONA ====== */}
       <section id="como-funciona" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center">Cómo funciona</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Cómo funciona</h2>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             {STEPS.map((s, i) => (
               <div key={i} className="rounded-2xl p-6 bg-brand-light">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white"
-                     style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}>
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}
+                >
                   {s.num}
                 </div>
                 <h3 className="mt-4 font-semibold">{s.title}</h3>
@@ -200,7 +210,7 @@ export default function Page() {
 
       {/* ====== EJEMPLOS ====== */}
       <section id="ejemplos" className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Ejemplos reales</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Ejemplos reales</h2>
         <p className="text-center mt-3 text-brand-dark/80">Así verían tus clientes la carta y el pedido.</p>
 
         <div className="mt-10 grid md:grid-cols-3 gap-6">
@@ -213,13 +223,14 @@ export default function Page() {
       {/* ====== PRECIOS ====== */}
       <section id="precios" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center">Planes y precios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Planes y precios</h2>
           <p className="text-center mt-3 text-brand-dark/80">Transparente y sin sorpresas.</p>
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {/* Plan de implantación */}
             <div className="rounded-2xl p-6 bg-brand-light shadow-sm">
               <h3 className="font-semibold text-lg">Implantación única</h3>
-              <p className="mt-2 text-4xl font-extrabold">
+              <p className="mt-2 text-4xl font-extrabold tracking-tight">
                 {SITE.pricing.setup}{SITE.pricing.currency}
                 <span className="text-base font-medium text-brand-dark/70"> pago único</span>
               </p>
@@ -231,18 +242,21 @@ export default function Page() {
               </ul>
             </div>
 
+            {/* Plan mensual */}
             <div className="rounded-2xl p-6 bg-white border shadow-sm">
               <h3 className="font-semibold text-lg">Suscripción mensual</h3>
-              <p className="mt-2 text-4xl font-extrabold">
+              <p className="mt-2 text-4xl font-extrabold tracking-tight">
                 {SITE.pricing.monthly}{SITE.pricing.currency}
                 <span className="text-base font-medium text-brand-dark/70"> /mes</span>
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 {SITE.pricing.bullets.map((b, i) => <li key={i}>✓ {b}</li>)}
               </ul>
-              <a href="#contacto"
-                 className="mt-6 inline-block rounded-xl px-5 py-3 font-semibold text-white"
-                 style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}>
+              <a
+                href="#contacto"
+                className="mt-6 inline-block rounded-xl px-5 py-3 font-semibold text-white shadow"
+                style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}
+              >
                 Empezar ahora
               </a>
             </div>
@@ -256,7 +270,7 @@ export default function Page() {
 
       {/* ====== FAQ ====== */}
       <section id="faq" className="mx-auto max-w-5xl px-4 sm:px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Preguntas frecuentes</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Preguntas frecuentes</h2>
         <div className="mt-8 space-y-4">
           {FAQS.map((f, i) => (
             <details key={i} className="group bg-white rounded-xl p-4 shadow-sm open:shadow-md">
@@ -273,7 +287,7 @@ export default function Page() {
       <section id="contacto" className="bg-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 py-16">
           <div className="rounded-2xl p-6 md:p-8 shadow-lg border">
-            <h2 className="text-3xl font-bold">Solicita tu demo</h2>
+            <h2 className="text-3xl font-bold [text-wrap:balance]">Solicita tu demo</h2>
             <p className="mt-2 text-brand-dark/80">
               Déjanos tus datos y te contactamos para enseñarte PideLocal funcionando con tu marca.
             </p>
@@ -281,53 +295,66 @@ export default function Page() {
             <form onSubmit={handleContact} className="mt-6 grid md:grid-cols-2 gap-4">
               <div className="col-span-2 md:col-span-1">
                 <label className="text-sm">Nombre</label>
-                <input required value={form.nombre}
-                       onChange={e=>setForm(s=>({...s, nombre:e.target.value}))}
-                       className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green" />
+                <input
+                  required
+                  value={form.nombre}
+                  onChange={e=>setForm(s=>({...s, nombre:e.target.value}))}
+                  className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green"
+                />
               </div>
               <div className="col-span-2 md:col-span-1">
                 <label className="text-sm">Email</label>
-                <input required type="email" value={form.email}
-                       onChange={e=>setForm(s=>({...s, email:e.target.value}))}
-                       className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green" />
+                <input
+                  required
+                  type="email"
+                  value={form.email}
+                  onChange={e=>setForm(s=>({...s, email:e.target.value}))}
+                  className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green"
+                />
               </div>
               <div className="col-span-2">
                 <label className="text-sm">Nombre del negocio</label>
-                <input value={form.negocio}
-                       onChange={e=>setForm(s=>({...s, negocio:e.target.value}))}
-                       className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green" />
+                <input
+                  value={form.negocio}
+                  onChange={e=>setForm(s=>({...s, negocio:e.target.value}))}
+                  className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green"
+                />
               </div>
               <div className="col-span-2">
                 <label className="text-sm">Mensaje</label>
-                <textarea rows={4} value={form.mensaje}
-                          onChange={e=>setForm(s=>({...s, mensaje:e.target.value}))}
-                          className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green" />
+                <textarea
+                  rows={4}
+                  value={form.mensaje}
+                  onChange={e=>setForm(s=>({...s, mensaje:e.target.value}))}
+                  className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green"
+                />
               </div>
 
               <div className="col-span-2 flex flex-wrap gap-3 items-center">
-                <button disabled={sending}
-                        className="rounded-xl px-5 py-3 font-semibold text-white disabled:opacity-60"
-                        style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}>
+                <button
+                  disabled={sending}
+                  className="rounded-xl px-5 py-3 font-semibold text-white disabled:opacity-60 shadow"
+                  style={{ background: 'linear-gradient(135deg, #D4572A, #2FA24D)' }}
+                >
                   {sending ? 'Abriendo tu email…' : 'Enviar solicitud'}
                 </button>
 
-                {/* Enlace rápido a WhatsApp (opcional) */}
-                  {SITE.contact.whatsapp && (
+                {/* Enlace rápido a WhatsApp (opcional) — solo se muestra si hay número */}
+                {SITE.contact.whatsapp && (
                   <a
                     target="_blank"
                     rel="noreferrer"
                     href={SITE.contact.whatsapp}
                     className="rounded-xl border px-5 py-3 font-semibold hover:bg-brand-light"
                   >
-                  Hablar por WhatsApp
+                    Hablar por WhatsApp
                   </a>
-)}
-
+                )}
               </div>
             </form>
 
             <p className="text-xs mt-4 text-brand-dark/60">
-              Al enviar este formulario, nos pondremos en contacto contigo por email o WhatsApp.
+              Al enviar este formulario, nos pondremos en contacto contigo por email.
             </p>
           </div>
         </div>
