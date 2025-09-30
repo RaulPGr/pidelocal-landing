@@ -112,31 +112,47 @@ export default function Page() {
 
       {/* ====== HERO ====== */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(135deg, #D4572A 0%, #2FA24D 100%)' }} />
+        <div className="absolute inset-0 -z-10">
+  {/* Degradado de marca */}
+  <div
+    className="absolute inset-0"
+    style={{ background: 'linear-gradient(135deg, #C14F25 0%, #238E41 100%)' }} // un pelín más oscuro
+  />
+  {/* Scrim para mejorar contraste del texto en la parte izquierda */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.45),_transparent_60%)]" />
+</div>
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 md:py-28 text-white">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-sm">
-                {SITE.tagline}
-              </h1>
-              <p className="mt-5 text-lg/relaxed opacity-95">
-                {SITE.sub}
-              </p>
-              <div className="mt-8 flex items-center gap-3">
-                <a href={SITE.ctaPrimary.href}
-                   className="rounded-xl bg-white text-brand-dark px-5 py-3 font-semibold hover:opacity-95">
-                  {SITE.ctaPrimary.label}
-                </a>
-                <a href={SITE.ctaSecondary.href}
-                   className="rounded-xl border border-white/70 px-5 py-3 font-semibold hover:bg-white/10">
-                  {SITE.ctaSecondary.label}
-                </a>
-              </div>
-              <div className="mt-8 flex items-center gap-4 opacity-90">
-                <img src={SITE.assets.icon} alt="Icono PideLocal" className="h-8 w-8" />
-                <span className="text-sm">Sin comisiones por pedido • 100% tu marca</span>
-              </div>
-            </div>
+  <div className="max-w-2xl bg-black/30 backdrop-blur-sm rounded-2xl p-6 ring-1 ring-white/10">
+    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-sm">
+      {SITE.tagline}
+    </h1>
+    <p className="mt-5 text-lg/relaxed text-white/95">
+      {SITE.sub}
+    </p>
+    <div className="mt-8 flex items-center gap-3">
+      <a
+        href={SITE.ctaPrimary.href}
+        className="rounded-xl bg-white text-brand-dark px-5 py-3 font-semibold hover:opacity-95"
+      >
+        {SITE.ctaPrimary.label}
+      </a>
+      <a
+        href={SITE.ctaSecondary.href}
+        className="rounded-xl border border-white/70 px-5 py-3 font-semibold hover:bg-white/10 text-white"
+      >
+        {SITE.ctaSecondary.label}
+      </a>
+    </div>
+    <div className="mt-8 flex items-center gap-4 opacity-90">
+      <img src={SITE.assets.icon} alt="Icono PideLocal" className="h-8 w-8" />
+      <span className="text-sm text-white/90">Sin comisiones por pedido • 100% tu marca</span>
+    </div>
+  </div>
+</div>
+
 
             <div className="hidden md:block">
               <div className="bg-white/95 rounded-2xl p-3 shadow-xl">
