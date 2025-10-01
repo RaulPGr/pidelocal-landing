@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" className="h-full">
       <head>
         {/* GA4 */}
         <Script
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             logo: `${SITE_URL}/brand/icono-pidelocal.png`,
             sameAs: [
               // añade tus redes cuando las tengas
-            'https://www.instagram.com/pidelocalweb/',
+              'https://www.instagram.com/pidelocalweb/',
               // 'https://www.facebook.com/tuusuario',
               // 'https://www.linkedin.com/company/tuusuario',
               // 'https://www.tiktok.com/@tuusuario',
@@ -85,10 +85,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       {/* 🎨 Fondo beige claro + tipografía */}
-      <body className={`${inter.className} bg-[#fdfaf6] text-gray-900 antialiased`}>
+      <body className={`${inter.className} min-h-screen bg-[#fdfaf6] text-gray-900 antialiased`}>
         {children}
       </body>
-
     </html>
   )
 }
+
