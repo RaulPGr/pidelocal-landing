@@ -69,7 +69,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })}
         </Script>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className="bg-[#faf7f2] text-gray-900 antialiased">
+        {children}
+      </body>
+
     </html>
   )
 }
