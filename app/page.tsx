@@ -28,7 +28,7 @@ const BUSINESS = {
   pricing: {
     setupOneTime: 999, // Implantación única (pago único)
     // Planes mensuales
-    starter: 15,
+    starter: 19,
     medium: 29,
     premium: 49,
     currency: '€',
