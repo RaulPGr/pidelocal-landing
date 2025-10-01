@@ -26,9 +26,9 @@ const BUSINESS = {
   // 💶 PRECIOS (recomendados “early stage”)
   // Sube/baja aquí y la tabla de precios se actualiza sola
   pricing: {
-    setupOneTime: 129, // Implantación única (pago único)
+    setupOneTime: 999, // Implantación única (pago único)
     // Planes mensuales
-    starter: 12,
+    starter: 15,
     medium: 29,
     premium: 49,
     currency: '€',
@@ -37,7 +37,7 @@ const BUSINESS = {
       '*Precios sin IVA. El pago con tarjeta en el plan Premium lleva comisiones de Stripe aparte.',
     // Promo de lanzamiento opcional (muestra una banda encima de precios)
     launchPromo:
-      'Lanzamiento: -50% los 3 primeros meses en cualquier plan. Sin permanencia.',
+      'Lanzamiento: -25% los 3 primeros meses en cualquier plan. Sin permanencia.',
   },
 
   // 🖼️ Activos de marca (sube los archivos a /public/brand/)
