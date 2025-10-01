@@ -358,28 +358,7 @@ export default function Page() {
           )}
 
           <div className="mt-10 grid lg:grid-cols-4 gap-6">
-            {/* Implantación única */}
-            <div className="rounded-2xl p-6 bg-brand-light shadow-sm">
-              <h3 className="font-semibold text-lg">Implantación única</h3>
-              <p className="mt-2 text-4xl font-extrabold tracking-tight">
-                {BUSINESS.pricing.setupOneTime}{BUSINESS.pricing.currency}
-                <span className="text-base font-medium text-brand-dark/70"> pago único</span>
-              </p>
-              <ul className="mt-4 text-sm space-y-2">
-                <li>✓ Montaje 24–48 h</li>
-                <li>✓ Carga inicial del menú</li>
-                <li>✓ Personalización a tu marca</li>
-                <li>✓ Dominio y SEO básico</li>
-              </ul>
-              <a
-                href="#contacto"
-                onClick={() => sendGA('generate_lead', { location: 'pricing', label: 'Implantación' })}
-                className="mt-6 inline-block rounded-xl px-5 py-3 font-semibold text-white shadow"
-                style={{ background: `linear-gradient(135deg, ${BUSINESS.colors.orange}, ${BUSINESS.colors.green})` }}
-              >
-                Empezar ahora
-              </a>
-            </div>
+           
 
             {/* Starter */}
             <div className="rounded-2xl p-6 bg-white border shadow-sm">
@@ -449,6 +428,30 @@ export default function Page() {
                 La pasarela Stripe aplica su propia comisión por transacción.
               </p>
             </div>
+
+             {/* Implantación única */}
+            <div className="rounded-2xl p-6 bg-brand-light shadow-sm">
+              <h3 className="font-semibold text-lg">Implantación única</h3>
+              <p className="mt-2 text-4xl font-extrabold tracking-tight">
+                {BUSINESS.pricing.setupOneTime}{BUSINESS.pricing.currency}
+                <span className="text-base font-medium text-brand-dark/70"> pago único</span>
+              </p>
+              <ul className="mt-4 text-sm space-y-2">
+                <li>✓ Montaje 24–48 h</li>
+                <li>✓ Carga inicial del menú</li>
+                <li>✓ Personalización a tu marca</li>
+                <li>✓ Dominio y SEO básico</li>
+              </ul>
+              <a
+                href="#contacto"
+                onClick={() => sendGA('generate_lead', { location: 'pricing', label: 'Implantación' })}
+                className="mt-6 inline-block rounded-xl px-5 py-3 font-semibold text-white shadow"
+                style={{ background: `linear-gradient(135deg, ${BUSINESS.colors.orange}, ${BUSINESS.colors.green})` }}
+              >
+                Empezar ahora
+              </a>
+            </div>
+            
           </div>
 
           <p className="text-xs text-center mt-6 text-brand-dark/60">{BUSINESS.pricing.legalNote}</p>
