@@ -10,15 +10,6 @@
 
 import { useMemo, useState, useEffect } from 'react';
 
-// ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
-// Sustituye por TU URL que termina en /exec
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzZBZvyOL8YdLwT4DIZJZLa9AXxKT_sO2idCOJQkKgUdCvybFtOWHwWF8JFCDeaFLZ8/exec';
-
-// (Opcional) Token sencillo para “firmar” la petición.
-// Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
-const SHEETS_SECRET = '';
-
-
 type Feature = { title: string; desc: string };
 type Step = { num: string; title: string; desc: string };
 type FAQ = { q: string; a: string };
@@ -76,6 +67,16 @@ const BUSINESS = {
     heroTo: '#238E41',   // fin degradado HERO
   },
 };
+
+// ===============================
+// ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
+// Pega aquí la URL EXACTA que te dio Apps Script y que termina en /exec
+// Ejemplo: 'https://script.google.com/macros/s/AKfycbXXXXXXXX/exec'
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzZBZvyOL8YdLwT4DIZJZLa9AXxKT_sO2idCOJQkKgUdCvybFtOWHwWF8JFCDeaFLZ8/exec';
+
+// (Opcional) Token sencillo para “firmar” la petición.
+// Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
+const SHEETS_SECRET = '';
 
 // ===============================
 // 🔧 BENEFICIOS (lista visible en sección “Beneficios”)
@@ -149,49 +150,48 @@ export default function Page() {
     return () => clearInterval(t);
   }, []);
 
-  // ✉️ Envío sin backend: abre el cliente de correo (mailto)
+  // ✉️ Envío sin backend: guarda en Sheets y abre el cliente de correo (mailto)
   const handleContact = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setSending(true);
+    e.preventDefault();
+    setSending(true);
 
-  // GA: registra intento de envío
-  sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
+    // GA: registra intento de envío
+    sendGA('generate_lead', { location: 'contact_form', label: 'Enviar solicitud' });
 
-  // 1) Guardar en Google Sheets (no bloquea el mailto si falla)
-  try {
-    await fetch(SHEETS_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nombre: form.nombre,
-        email: form.email,
-        negocio: form.negocio,
-        mensaje: form.mensaje,
-        fuente: 'landing',
-        userAgent: typeof window !== 'undefined' ? navigator.userAgent : '',
-        page: typeof window !== 'undefined' ? window.location.href : '',
-        // opcional: si usas token en el Apps Script
-        secret: SHEETS_SECRET || undefined,
-      }),
-      // Si el usuario cierra la pestaña rápido, intenta enviar igual
-      keepalive: true,
-    });
-    sendGA('lead_saved', { method: 'sheets_webhook' });
-  } catch (err) {
-    console.warn('No se pudo guardar en Sheets:', err);
-    sendGA('lead_saved_error', { reason: String(err) });
-  }
+    // 1) Guardar en Google Sheets (no bloquea el mailto si falla)
+    try {
+      await fetch(SHEETS_WEBHOOK_URL, {
+        method: 'POST',
+        // ✅ Simple request (evita preflight CORS). No añadas más cabeceras.
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          nombre: form.nombre,
+          email: form.email,
+          negocio: form.negocio,
+          mensaje: form.mensaje,
+          fuente: 'landing',
+          userAgent: typeof window !== 'undefined' ? navigator.userAgent : '',
+          page: typeof window !== 'undefined' ? window.location.href : '',
+          // opcional: si usas token, Apps Script debe verificarlo
+          secret: SHEETS_SECRET || undefined,
+        }),
+        keepalive: true,
+      });
+      sendGA('lead_saved', { method: 'sheets_webhook' });
+    } catch (err) {
+      console.warn('No se pudo guardar en Sheets:', err);
+      sendGA('lead_saved_error', { reason: String(err) });
+    }
 
-  // 2) Mailto como confirmación/backup
-  const subject = encodeURIComponent(`Demo PideLocal - ${form.negocio || form.nombre}`);
-  const body = encodeURIComponent(
-    `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
-  );
-  window.location.href = `mailto:${BUSINESS.email}?subject=${subject}&body=${body}`;
+    // 2) Mailto como confirmación/backup
+    const subject = encodeURIComponent(`Demo PideLocal - ${form.negocio || form.nombre}`);
+    const body = encodeURIComponent(
+      `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
+    );
+    window.location.href = `mailto:${BUSINESS.email}?subject=${subject}&body=${body}`;
 
-  setTimeout(() => setSending(false), 800);
-};
-
+    setTimeout(() => setSending(false), 800);
+  };
 
   return (
     <main className="min-h-screen bg-brand-light text-brand-dark">
@@ -562,29 +562,27 @@ export default function Page() {
         </div>
       </section>
 
-       {/* ====== FOOTER (en app/page.tsx) ====== */}
-<footer className="border-t bg-white">
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div className="flex items-center gap-3">
-      <img src={BUSINESS.assets.icon} alt="icon" className="h-6 w-6" />
-      <span className="text-sm">&copy; {year} PideLocal. Todos los derechos reservados.</span>
-    </div>
-    <div className="text-sm flex flex-wrap items-center gap-x-3 gap-y-2">
-      <a href={`mailto:${BUSINESS.email}`} className="hover:text-brand-green">Contacto</a>
-      <span className="opacity-50">·</span>
-      <a href="#precios" className="hover:text-brand-green">Precios</a>
-      <span className="opacity-50">·</span>
-      {/* 👇 enlaces correctos (sin el grupo) */}
-      <a href="/aviso-legal" className="hover:text-brand-green">Aviso legal</a>
-      <span className="opacity-50">·</span>
-      <a href="/privacidad" className="hover:text-brand-green">Privacidad</a>
-      <span className="opacity-50">·</span>
-      <a href="/cookies" className="hover:text-brand-green">Cookies</a>
-    </div>
-  </div>
-</footer>
-
-
+      {/* ====== FOOTER ====== */}
+      <footer className="border-t bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <img src={BUSINESS.assets.icon} alt="icon" className="h-6 w-6" />
+            <span className="text-sm">&copy; {year} PideLocal. Todos los derechos reservados.</span>
+          </div>
+          <div className="text-sm flex flex-wrap items-center gap-x-3 gap-y-2">
+            <a href={`mailto:${BUSINESS.email}`} className="hover:text-brand-green">Contacto</a>
+            <span className="opacity-50">·</span>
+            <a href="#precios" className="hover:text-brand-green">Precios</a>
+            <span className="opacity-50">·</span>
+            {/* 👇 enlaces legales correctos (sin el grupo) */}
+            <a href="/aviso-legal" className="hover:text-brand-green">Aviso legal</a>
+            <span className="opacity-50">·</span>
+            <a href="/privacidad" className="hover:text-brand-green">Privacidad</a>
+            <span className="opacity-50">·</span>
+            <a href="/cookies" className="hover:text-brand-green">Cookies</a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
