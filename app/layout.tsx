@@ -3,8 +3,9 @@
    - Metadatos SEO (título, descripción, OG, Twitter)
    - Canonical (metadataBase) -> cámbiala cuando tengas dominio propio
    - Favicon
-   - Google Analytics (GA4) con tu ID
-   - JSON-LD Organization para enriquecer resultados
+   - Google Analytics (GA4)
+   - JSON-LD Organization
+   - Fondo beige claro de sitio completo
 */
 import type { Metadata } from 'next'
 import './globals.css'
@@ -16,18 +17,19 @@ const inter = Inter({ subsets: ['latin'] })
 // ⛳️ Cambia esto cuando conectes dominio propio (ej: https://pidelocal.com)
 const SITE_URL = 'https://pidelocal.vercel.app'
 
+// ✅ Metadatos (ajusta libremente)
 export const metadata: Metadata = {
   title: 'PideLocal — Tu restaurante online en minutos',
   description:
     'Crea la web de tu restaurante, muestra tu carta, recibe pedidos y cobra con tu propia marca. Sin comisiones por pedido.',
-  metadataBase: new URL(SITE_URL),             // ← actualiza con tu dominio final cuando lo tengas
+  metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
     title: 'PideLocal — Tu restaurante online en minutos',
     description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
-    images: ['/brand/hero-mock.png'],          // ← asegúrate de tener esta imagen en /public/brand/
+    images: ['/brand/hero-mock.png'], // asegúrate de tener esta imagen
   },
   twitter: {
     card: 'summary_large_image',
@@ -35,19 +37,18 @@ export const metadata: Metadata = {
     description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
     images: ['/brand/hero-mock.png'],
   },
-  icons: { icon: '/brand/icono-pidelocal.png' } // ← favicon
+  icons: { icon: '/brand/icono-pidelocal.png' }, // favicon
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <head>
-        {/* GA4: script oficial */}
+        {/* GA4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EH2DBM9Y3"
           strategy="afterInteractive"
         />
-        {/* GA4: init + debug_mode para facilitar comprobación en DebugView */}
         <Script id="ga4-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -57,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* JSON-LD: marca Organization (visibilidad en Google) */}
+        {/* JSON-LD Organization */}
         <Script id="org-jsonld" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -65,14 +66,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: 'PideLocal',
             url: SITE_URL,
             logo: `${SITE_URL}/brand/icono-pidelocal.png`,
-            sameAs: [] // añade redes si quieres más adelante
+            sameAs: [
+              // añade tus redes cuando las tengas
+              // 'https://instagram.com/tuusuario',
+              // 'https://www.facebook.com/tuusuario',
+              // 'https://www.linkedin.com/company/tuusuario',
+              // 'https://www.tiktok.com/@tuusuario',
+            ],
+            contactPoint: [{
+              '@type': 'ContactPoint',
+              email: 'pidelocal.contacto@gmail.com',
+              contactType: 'sales',
+              areaServed: 'ES',
+              availableLanguage: ['es']
+            }]
           })}
         </Script>
       </head>
-      <body className="bg-[#faf7f2] text-gray-900 antialiased">
+
+      {/* 🎨 Fondo beige claro + tipografía */}
+      <body className={`${inter.className} bg-[#faf7f2] text-gray-900 antialiased`}>
         {children}
       </body>
-
     </html>
   )
 }
