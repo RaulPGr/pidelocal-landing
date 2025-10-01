@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             logo: `${SITE_URL}/brand/icono-pidelocal.png`,
             sameAs: [
               // añade tus redes cuando las tengas
-              // 'https://instagram.com/tuusuario',
+            'https://www.instagram.com/pidelocalweb/',
               // 'https://www.facebook.com/tuusuario',
               // 'https://www.linkedin.com/company/tuusuario',
               // 'https://www.tiktok.com/@tuusuario',
