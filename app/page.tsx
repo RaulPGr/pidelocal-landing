@@ -556,7 +556,7 @@ export default function Page() {
             </form>
 
             <p className="text-xs mt-4 text-brand-dark/60">
-              Al enviar este formulario, nos pondremos en contacto contigo por email.
+              Al enviar este formulario, nos pondremos en contacto contigo por email o teléfono si nos lo facilitas.
             </p>
           </div>
         </div>
