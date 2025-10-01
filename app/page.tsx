@@ -583,15 +583,15 @@ export default function Page() {
       </section>
 
      {/* ====== FOOTER ====== */}
-<footer className="border-t bg-transparent">
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-    {/* Marca + derechos */}
+<footer className="border-t bg-white">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    {/* Marca + copy */}
     <div className="flex items-center gap-3">
       <img src={BUSINESS.assets.icon} alt="PideLocal" className="h-6 w-6" />
       <span className="text-sm">&copy; {year} PideLocal. Todos los derechos reservados.</span>
     </div>
 
-    {/* Enlaces legales / contacto */}
+    {/* Enlaces legales y navegación rápida */}
     <div className="text-sm flex flex-wrap items-center gap-x-3 gap-y-2">
       <a href={`mailto:${BUSINESS.email}`} className="hover:text-brand-green">Contacto</a>
       <span className="opacity-50">·</span>
@@ -605,65 +605,49 @@ export default function Page() {
     </div>
 
     {/* Redes sociales */}
-    <div className="flex items-center gap-4">
-      {/* Instagram */}
+    <div className="flex items-center gap-3">
+      {/* 👉 cambia las URLs por las tuyas */}
       <a
-        href="#"
+        href="https://www.instagram.com/pidelocalweb/"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Instagram"
-        className="text-gray-600 hover:text-pink-500"
+        aria-label="Instagram de PideLocal"
+        className="p-2 rounded-lg hover:bg-brand-light/30 transition"
         title="Instagram"
       >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm9 1.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+        {/* Instagram SVG */}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+          <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.507 5.507 0 0 0 12 7.5zm0 9A3.5 3.5 0 1 1 15.5 13 3.504 3.504 0 0 1 12 16.5zM18 6.25a1.25 1.25 0 1 0 1.25 1.25A1.25 1.25 0 0 0 18 6.25z"/>
         </svg>
       </a>
 
-      {/* Facebook */}
       <a
-        href="#"
+        href="https://www.linkedin.com/company/pidelocal"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Facebook"
-        className="text-gray-600 hover:text-blue-600"
-        title="Facebook"
-      >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H8.1v-2.89h2.34V9.41c0-2.32 1.38-3.6 3.5-3.6.7 0 1.47.12 1.47.12v2.36h-.83c-1.3 0-1.71.8-1.71 1.63v1.95h2.91l-.47 2.89h-2.44v6.99C18.34 21.13 22 17 22 12z"/>
-        </svg>
-      </a>
-
-      {/* LinkedIn */}
-      <a
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        className="text-gray-600 hover:text-blue-700"
+        aria-label="LinkedIn de PideLocal"
+        className="p-2 rounded-lg hover:bg-brand-light/30 transition"
         title="LinkedIn"
       >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7 0h3.8v2h.06c.52-1 1.8-2.06 3.7-2.06 3.96 0 4.7 2.6 4.7 6V23h-4v-5.5c0-1.32-.02-3-1.82-3-1.82 0-2.1 1.42-2.1 2.9V23h-4V8.5z"/>
+        {/* LinkedIn SVG */}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+          <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.47 4.73-2.47C21.9 7.73 24 10 24 14.1V24h-5v-8.7c0-2.07-.04-4.73-2.88-4.73-2.88 0-3.33 2.25-3.33 4.58V24H8z"/>
         </svg>
       </a>
 
-      {/* TikTok */}
-      <a
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="TikTok"
-        className="text-gray-600 hover:text-black"
-        title="TikTok"
-      >
-        <svg className="w-5 h-5" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-          <path d="M30 4c1.2 3.8 4.2 7 8 8v6c-3.3 0-6.5-1-9-3v12.5c0 6.9-5.6 12.5-12.5 12.5S4 34.4 4 27.5C4 20.6 9.6 15 16.5 15c1.1 0 2.1.1 3.1.4v6.7a6.5 6.5 0 1 0 3.9 5.9V4h6.5z"/>
-        </svg>
+      {/* — Opcionales (descomenta si los usas)
+      <a href="https://www.facebook.com/tuusuario" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-lg hover:bg-brand-light/30 transition" title="Facebook">
+        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2v-2.2c0-2 1.2-3.1 3.1-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v2h2.3L15 14.9h-2v7A10 10 0 0 0 22 12z"/></svg>
       </a>
+
+      <a href="https://www.tiktok.com/@tuusuario" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="p-2 rounded-lg hover:bg-brand-light/30 transition" title="TikTok">
+        <svg className="h-5 w-5" viewBox="0 0 48 48" fill="currentColor"><path d="M41 17.4v5.2a12.2 12.2 0 0 1-7.1-2.3v9.9a11.3 11.3 0 1 1-11.3-11.3c.6 0 1.2.1 1.8.2v5.5a5.8 5.8 0 1 0 4.5 5.6V6h5.1a12.2 12.2 0 0 0 7 11.4Z"/></svg>
+      </a>
+      */}
     </div>
   </div>
 </footer>
+
 
     </main>
   );
