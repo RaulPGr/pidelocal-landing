@@ -390,8 +390,8 @@ export default function Page() {
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Página de inicio + datos del restaurante</li>
-                <li>✓ Carta/menú visible (sin pedidos)</li>
-                <li>✓ Diseño responsive y SEO básico</li>
+                <li>✓ Carta/menú visible (sin pedidos online)</li>
+                <li>✓ 1 actualización gratuita al mes</li>
               </ul>
               <a
                 href="#contacto"
@@ -412,8 +412,7 @@ export default function Page() {
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Starter</li>
-                <li>✓ Gestión de productos (añadir/editar/agotar)</li>
-                <li>✓ Recibir pedidos online (efectivo / pago en tienda)</li>
+                <li>✓ Panel de gestión de productos (añadir/editar/agotar)</li>
               </ul>
               <a
                 href="#contacto"
@@ -434,7 +433,7 @@ export default function Page() {
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Medium</li>
-                <li>✓ Pago con tarjeta en la web (Stripe)</li>
+                <li>✓ Recibir pedidos online</li>
                 <li>✓ Estadísticas de ventas</li>
               </ul>
               <a
