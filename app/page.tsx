@@ -72,7 +72,7 @@ const BUSINESS = {
 // ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
 // Pega aquí la URL EXACTA que te dio Apps Script y que termina en /exec
 // Ejemplo: 'https://script.google.com/macros/s/AKfycbXXXXXXXX/exec'
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwaIYousNFp-CsYSseVJ0PTj3Qh8d-lDvRgJTNVKiRVYbbknNUi_Smpz32RkMSMmhNt/exec';
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxTRbl2N5FbFccSIgHCv3dI5SEJ1Y-S9NXOl33R-r-FCKjVDbLdQcxvPtaeh3ycAEjf/exec';
 
 // (Opcional) Token sencillo para “firmar” la petición.
 // Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
@@ -141,7 +141,7 @@ const sendGA = (name: string, params: Record<string, any> = {}) => {
 export default function Page() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const [sending, setSending] = useState(false);
-  const [form, setForm] = useState({ nombre: '', email: '', negocio: '', mensaje: '' });
+  const [form, setForm] = useState({ nombre: '', email: '', telefono: '', negocio: '', mensaje: '' });
 
   // Vacía la cola GA periódicamente + evento de test debug
   useEffect(() => {
@@ -167,6 +167,7 @@ export default function Page() {
         body: JSON.stringify({
           nombre: form.nombre,
           email: form.email,
+          telefono: form.telefono,
           negocio: form.negocio,
           mensaje: form.mensaje,
           fuente: 'landing',
@@ -186,8 +187,11 @@ export default function Page() {
     // 2) Mailto como confirmación/backup
     const subject = encodeURIComponent(`Demo PideLocal - ${form.negocio || form.nombre}`);
     const body = encodeURIComponent(
-      `Hola, soy ${form.nombre} (${form.email}).\n\nNegocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
-    );
+  `Hola, soy ${form.nombre} (${form.email}).\n` +
+  `Teléfono: ${form.telefono}\n\n` +            // <- NUEVO
+  `Negocio: ${form.negocio}\n\nMensaje:\n${form.mensaje}\n\n— Enviado desde la landing de PideLocal`
+);
+
     window.location.href = `mailto:${BUSINESS.email}?subject=${subject}&body=${body}`;
 
     setTimeout(() => setSending(false), 800);
@@ -513,6 +517,20 @@ export default function Page() {
                   onChange={e=>setForm(s=>({...s, email:e.target.value}))}
                   className="w-full mt-1 rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Teléfono</label>
+                <input
+                  type="tel"
+                  inputMode="tel"
+                  name="telefono"
+                  value={form.telefono}
+                  onChange={(e) => setForm((f) => ({ ...f, telefono: e.target.value }))}
+                  placeholder="+34 600 000 000"
+                  className="w-full rounded-xl border px-4 py-3 mb-4"
+                />
+
               </div>
               <div className="col-span-2">
                 <label className="text-sm">Nombre del negocio</label>
