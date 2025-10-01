@@ -198,7 +198,7 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-light text-brand-dark">
+    <main className="min-h-screen text-brand-dark">
       {/* ====== NAVBAR ====== */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -583,7 +583,7 @@ export default function Page() {
       </section>
 
      {/* ====== FOOTER ====== */}
-<footer className="border-t bg-white">
+<footer className="border-t bg-transparent">
   <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
     {/* Marca + derechos */}
     <div className="flex items-center gap-3">
