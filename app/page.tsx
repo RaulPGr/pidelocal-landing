@@ -451,7 +451,7 @@ export default function Page() {
                 Empezar ahora
               </a>
             </div>
-            
+
           </div>
 
           <p className="text-xs text-center mt-6 text-brand-dark/60">{BUSINESS.pricing.legalNote}</p>
@@ -602,6 +602,24 @@ export default function Page() {
             <a href="/cookies" className="hover:text-brand-green">Cookies</a>
           </div>
         </div>
+         {/* Redes sociales */}
+    <div className="flex space-x-4">
+      <a href="https://instagram.com/pidelocal" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg className="w-5 h-5 text-gray-600 hover:text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.5 2C4.46 2 2 4.46 2 7.5v9C2 19.54 4.46 22 7.5 22h9c3.04 0 5.5-2.46 5.5-5.5v-9C22 4.46 19.54 2 16.5 2h-9zm0 2h9c1.94 0 3.5 1.56 3.5 3.5v9c0 1.94-1.56 3.5-3.5 3.5h-9c-1.94 0-3.5-1.56-3.5-3.5v-9C4 5.56 5.56 4 7.5 4zm10 1a1 1 0 100 2 1 1 0 000-2zm-6.5 2.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/>
+        </svg>
+      </a>
+      <a href="https://facebook.com/pidelocal" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg className="w-5 h-5 text-gray-600 hover:text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H8.1v-2.89h2.34V9.41c0-2.32 1.38-3.6 3.5-3.6.7 0 1.47.12 1.47.12v2.36h-.83c-1.3 0-1.71.8-1.71 1.63v1.95h2.91l-.47 2.89h-2.44v6.99C18.34 21.13 22 17 22 12z"/>
+        </svg>
+      </a>
+      <a href="https://linkedin.com/company/pidelocal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg className="w-5 h-5 text-gray-600 hover:text-blue-700" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9.25 14v-6H7.5v6h2.25zM8.62 9.25c.72 0 1.19-.48 1.19-1.08-.01-.61-.47-1.09-1.17-1.09-.7 0-1.18.48-1.18 1.09 0 .6.47 1.08 1.15 1.08h.01zM18 17v-3.14c0-1.67-.88-2.44-2.05-2.44-.95 0-1.36.52-1.59.88V11H12v6h2.25v-3.04c0-.16.01-.31.06-.43.14-.31.47-.64 1.02-.64.72 0 1.02.48 1.02 1.18V17H18z"/>
+        </svg>
+      </a>
+    </div>
       </footer>
     </main>
   );
