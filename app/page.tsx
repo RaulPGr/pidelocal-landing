@@ -72,7 +72,7 @@ const BUSINESS = {
 // ✅ ENVÍO A GOOGLE SHEETS (Apps Script Web App)
 // Pega aquí la URL EXACTA que te dio Apps Script y que termina en /exec
 // Ejemplo: 'https://script.google.com/macros/s/AKfycbXXXXXXXX/exec'
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxTRbl2N5FbFccSIgHCv3dI5SEJ1Y-S9NXOl33R-r-FCKjVDbLdQcxvPtaeh3ycAEjf/exec';
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwSGyZ_qwob9Uk2AbZhztDjZINh7zptPPZPU5gJOCZ23VGTPbzQR4V2oNFB5gvi6tp9/exec';
 
 // (Opcional) Token sencillo para “firmar” la petición.
 // Si NO lo quieres usar, déjalo como cadena vacía '' y no pasa nada.
