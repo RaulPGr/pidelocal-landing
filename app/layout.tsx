@@ -85,9 +85,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       {/* 🎨 Fondo beige claro + tipografía */}
-      <body className={`${inter.className} bg-[#faf7f2] text-gray-900 antialiased`}>
+      <body className={`${inter.className} bg-[#fdfaf6] text-gray-900 antialiased`}>
         {children}
       </body>
+
     </html>
   )
 }
