@@ -635,11 +635,11 @@ export default function Page() {
         </svg>
       </a>
 
-      {/* — Opcionales (descomenta si los usas)
-      <a href="https://www.facebook.com/tuusuario" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-lg hover:bg-brand-light/30 transition" title="Facebook">
+      {/* Facebook */}
+      <a href="https://www.facebook.com/profile.php?id=61580821805063" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-lg hover:bg-brand-light/30 transition" title="Facebook">
         <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2v-2.2c0-2 1.2-3.1 3.1-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v2h2.3L15 14.9h-2v7A10 10 0 0 0 22 12z"/></svg>
       </a>
-
+      {/*
       <a href="https://www.tiktok.com/@tuusuario" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="p-2 rounded-lg hover:bg-brand-light/30 transition" title="TikTok">
         <svg className="h-5 w-5" viewBox="0 0 48 48" fill="currentColor"><path d="M41 17.4v5.2a12.2 12.2 0 0 1-7.1-2.3v9.9a11.3 11.3 0 1 1-11.3-11.3c.6 0 1.2.1 1.8.2v5.5a5.8 5.8 0 1 0 4.5 5.6V6h5.1a12.2 12.2 0 0 0 7 11.4Z"/></svg>
       </a>

@@ -20,7 +20,7 @@ export default function Privacidad() {
 
         <h2 className="text-xl font-semibold">Datos que recopilamos</h2>
         <ul className="list-disc pl-5">
-          <li>Datos de contacto del formulario: nombre, email, nombre del negocio y mensaje.</li>
+          <li>Datos de contacto del formulario: nombre, email, teléfono, nombre del negocio y mensaje.</li>
           <li>Datos analíticos de navegación (Google Analytics 4) de forma agregada/anónima.</li>
         </ul>
 
