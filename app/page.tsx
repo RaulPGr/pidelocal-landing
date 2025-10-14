@@ -375,16 +375,7 @@ export default function Page() {
       <section id="ejemplos" className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Ejemplos reales</h2>
         <p className="text-center mt-3 text-brand-dark/80">Así verá tu clientela la carta y el proceso de pedido.</p>
-        <div
-          className="mt-10 grid md:grid-cols-3 gap-6 [&_img]:w-full [&_img]:h-56 md:[&_img]:h-64 [&_img]:object-cover [&_img]:cursor-zoom-in"
-          onClick={(e) => {
-            const t = e.target as HTMLElement;
-            if (t && t.tagName === 'IMG') {
-              const img = t as HTMLImageElement;
-              openLightbox(img.getAttribute('src') || '', img.getAttribute('alt') || '');
-            }
-          }}
-        >
+        <div className="mt-10 grid md:grid-cols-3 gap-6 [&>img]:hidden">
           <div
             className="group relative cursor-zoom-in rounded-xl overflow-hidden shadow-sm bg-white"
             onClick={() => openLightbox(BUSINESS.assets.demo1, 'Demo - Inicio')}
@@ -400,6 +391,41 @@ export default function Page() {
               alt="Demo - Inicio"
               className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
+            <span className="pointer-events-none absolute bottom-2 right-2 text-[11px] md:text-xs px-2 py-1 rounded-md bg-black/60 text-white opacity-80 md:opacity-0 md:group-hover:opacity-100 transition">Ampliar</span>
+          </div>
+          <div
+            className="group relative cursor-zoom-in rounded-xl overflow-hidden shadow-sm bg-white"
+            onClick={() => openLightbox(BUSINESS.assets.demo2, 'Demo - Menǧ')}
+            aria-label="Ampliar imagen Demo - Menǧ"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') openLightbox(BUSINESS.assets.demo2, 'Demo - Menǧ');
+            }}
+          >
+            <img
+              src={BUSINESS.assets.demo2}
+              alt="Demo - Menǧ"
+              className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            <span className="pointer-events-none absolute bottom-2 right-2 text-[11px] md:text-xs px-2 py-1 rounded-md bg-black/60 text-white opacity-80 md:opacity-0 md:group-hover:opacity-100 transition">Ampliar</span>
+          </div>
+          <div
+            className="group relative cursor-zoom-in rounded-xl overflow-hidden shadow-sm bg-white"
+            onClick={() => openLightbox(BUSINESS.assets.demo3, 'Demo - Pago')}
+            aria-label="Ampliar imagen Demo - Pago"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') openLightbox(BUSINESS.assets.demo3, 'Demo - Pago');
+            }}
+          >
+            <img
+              src={BUSINESS.assets.demo3}
+              alt="Demo - Pago"
+              className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            <span className="pointer-events-none absolute bottom-2 right-2 text-[11px] md:text-xs px-2 py-1 rounded-md bg-black/60 text-white opacity-80 md:opacity-0 md:group-hover:opacity-100 transition">Ampliar</span>
           </div>
           <img src={BUSINESS.assets.demo2} alt="Demo - Menú" className="rounded-xl shadow-sm" />
           <img src={BUSINESS.assets.demo3} alt="Demo - Pago" className="rounded-xl shadow-sm" />
