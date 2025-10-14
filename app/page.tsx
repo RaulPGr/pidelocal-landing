@@ -37,7 +37,7 @@ const BUSINESS = {
       '*Precios sin IVA. El pago con tarjeta en el plan Premium lleva comisiones de Stripe aparte.',
     // Promo de lanzamiento opcional (muestra una banda encima de precios)
     launchPromo:
-      'Lanzamiento: -25% los 3 primeros meses en cualquier plan. Sin permanencia.',
+      '',
   },
 
   // 🖼️ Activos de marca (sube los archivos a /public/brand/)
