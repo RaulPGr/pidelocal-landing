@@ -433,7 +433,7 @@ export default function Page() {
             <div className="rounded-2xl p-6 bg-brand-light shadow-sm">
               <h3 className="font-semibold text-lg">Implantación única</h3>
               <p className="mt-2 text-4xl font-extrabold tracking-tight">
-                {BUSINESS.pricing.setupOneTime}{BUSINESS.pricing.currency}
+                {BUSINESS.pricing.setupOneTime}
                 <span className="text-base font-medium text-brand-dark/70"> pago único</span>
               </p>
               <ul className="mt-4 text-sm space-y-2">
