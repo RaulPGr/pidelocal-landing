@@ -26,7 +26,7 @@ const BUSINESS = {
   // 💶 PRECIOS (recomendados “early stage”)
   // Sube/baja aquí y la tabla de precios se actualiza sola
   pricing: {
-    setupOneTime: 'Consultanos', // Implantación única (pago único)
+    setupOneTime: 'Consúltanos', // Implantación única (pago único)
     // Planes mensuales
     starter: 19,
     medium: 29,
