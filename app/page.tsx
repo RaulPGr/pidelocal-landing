@@ -34,7 +34,7 @@ const BUSINESS = {
     currency: '€',
     // Nota legal/breve visible bajo precios
     legalNote:
-      '*Si activas el pago con tarjeta en el plan Premium conlleva la aceptación de sus términos y el pago de sus comisiones.',
+      '*Si activas el pago con tarjeta con Stripe en el plan Premium conlleva la aceptación de sus términos y el pago de sus comisiones.',
     // Promo de lanzamiento opcional (muestra una banda encima de precios)
     launchPromo:
       '',
@@ -527,7 +527,7 @@ export default function Page() {
               <h3 className="font-semibold text-lg">Implantación única</h3>
               <p className="mt-2 text-4xl font-extrabold tracking-tight">
                 {BUSINESS.pricing.setupOneTime}
-                <span className="text-base font-medium text-brand-dark/70"> pago único</span>
+                <span className="text-base font-medium text-brand-dark/70"> </span>
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Montaje 24–48 h</li>
