@@ -34,7 +34,7 @@ const BUSINESS = {
     currency: '€',
     // Nota legal/breve visible bajo precios
     legalNote:
-      '*Precios sin IVA. El pago con tarjeta en el plan Premium lleva comisiones de Stripe aparte.',
+      '*Si activas el pago con tarjeta en el plan Premium lleva comisiones de Stripe aparte.',
     // Promo de lanzamiento opcional (muestra una banda encima de precios)
     launchPromo:
       '',
