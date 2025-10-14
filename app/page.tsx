@@ -42,7 +42,7 @@ const BUSINESS = {
 
   // 🖼️ Activos de marca (sube los archivos a /public/brand/)
   assets: {
-    logo: '/brand/logo-pidelocal.png',
+    logo: '/brand/icono-pidelocal.png',
     icon: '/brand/icono-pidelocal.png',
     heroMock: '/brand/hero-mock.png',
     demo1: '/brand/demo-home.png',
