@@ -85,10 +85,10 @@ const SHEETS_SECRET = '';
 const FEATURES: Feature[] = [
   { title: 'Más pedidos sin comisiones', desc: 'Recibe pedidos directos desde tu web. Sin comisiones por pedido.' },
   { title: 'Lanza en 48 h', desc: 'Web lista en 24–48 horas: nos encargamos de la implantación.' },
-  { title: 'Diseño responsive móvil', desc: 'Optimizada para móvil: donde se realiza la mayoría de pedidos.' },
-  { title: 'Pagos con tarjeta y efectivo', desc: 'Premium permite cobro con tarjeta online (comisiones Stripe). Efectivo disponible en Medium/Premium.' },
+  { title: 'Diseño responsive móvil', desc: 'Optimizada para móvil: donde se realizan la mayoría de pedidos.' },
+  { title: 'Pagos con tarjeta y efectivo', desc: 'Premium permite cobro con tarjeta online (comisiones Stripe).' },
   { title: 'Panel de gestión sencillo', desc: 'Edita tu carta, agota stock, confirma pedidos sin complicaciones.' },
-  { title: 'Conecta tu dominio y SEO básico', desc: '100% tu marca y dominio propio. Posicionamiento básico incluido.' },
+  { title: 'Conecta tu dominio y SEO básico', desc: '100% tu marca.' },
 ];
 
 // ===============================
@@ -104,7 +104,7 @@ const STEPS: Step[] = [
 // 🔧 FAQs (preguntas frecuentes) — sin zona
 // ===============================
 const FAQS: FAQ[] = [
-  { q: '¿Hay permanencia?', a: 'No. Funcionamos mes a mes. (Puedes aprovechar descuentos contratando 3 meses al inicio).' },
+  { q: '¿Hay permanencia?', a: 'No. Funcionamos mes a mes.' },
   { q: '¿Cargáis nuestro menú?', a: 'Sí. Durante la implantación te ayudamos con la carga inicial.' },
   { q: '¿Puedo usar mi dominio?', a: 'Sí, conectamos tu dominio (ej. tudominio.com) a tu web.' },
   { q: '¿Pagos con tarjeta?', a: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' },
