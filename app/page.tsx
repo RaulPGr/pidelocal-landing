@@ -142,6 +142,9 @@ export default function Page() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const [sending, setSending] = useState(false);
   const [form, setForm] = useState({ nombre: '', email: '', telefono: '', negocio: '', mensaje: '' });
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxSrc, setLightboxSrc] = useState('');
+  const [lightboxAlt, setLightboxAlt] = useState('');
 
   // Vacía la cola GA periódicamente + evento de test debug
   useEffect(() => {
@@ -149,6 +152,21 @@ export default function Page() {
     sendGA('debug_test', { ts: Date.now(), page: 'landing' });
     return () => clearInterval(t);
   }, []);
+
+  // Lightbox: cerrar con tecla ESC
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const openLightbox = (src: string, alt: string) => {
+    setLightboxSrc(src);
+    setLightboxAlt(alt);
+    setLightboxOpen(true);
+  };
 
   // ✉️ Envío sin backend: guarda en Sheets y abre el cliente de correo (mailto)
   const handleContact = async (e: React.FormEvent) => {
@@ -287,6 +305,31 @@ export default function Page() {
             </div>
           </div>
         </div>
+
+        {lightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <div className="relative" onClick={(e) => e.stopPropagation()}>
+              <img
+                src={lightboxSrc}
+                alt={lightboxAlt}
+                className="max-h-[85vh] max-w-[90vw] w-auto rounded-xl shadow-2xl"
+              />
+              <button
+                type="button"
+                aria-label="Cerrar"
+                onClick={() => setLightboxOpen(false)}
+                className="absolute -top-3 -right-3 bg-white/95 text-black rounded-full w-8 h-8 shadow flex items-center justify-center hover:bg-white"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ====== BENEFICIOS ====== */}
@@ -332,8 +375,32 @@ export default function Page() {
       <section id="ejemplos" className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center [text-wrap:balance]">Ejemplos reales</h2>
         <p className="text-center mt-3 text-brand-dark/80">Así verá tu clientela la carta y el proceso de pedido.</p>
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
-          <img src={BUSINESS.assets.demo1} alt="Demo - Inicio" className="rounded-xl shadow-sm" />
+        <div
+          className="mt-10 grid md:grid-cols-3 gap-6 [&_img]:w-full [&_img]:h-56 md:[&_img]:h-64 [&_img]:object-cover [&_img]:cursor-zoom-in"
+          onClick={(e) => {
+            const t = e.target as HTMLElement;
+            if (t && t.tagName === 'IMG') {
+              const img = t as HTMLImageElement;
+              openLightbox(img.getAttribute('src') || '', img.getAttribute('alt') || '');
+            }
+          }}
+        >
+          <div
+            className="group relative cursor-zoom-in rounded-xl overflow-hidden shadow-sm bg-white"
+            onClick={() => openLightbox(BUSINESS.assets.demo1, 'Demo - Inicio')}
+            aria-label="Ampliar imagen Demo - Inicio"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') openLightbox(BUSINESS.assets.demo1, 'Demo - Inicio');
+            }}
+          >
+            <img
+              src={BUSINESS.assets.demo1}
+              alt="Demo - Inicio"
+              className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
           <img src={BUSINESS.assets.demo2} alt="Demo - Menú" className="rounded-xl shadow-sm" />
           <img src={BUSINESS.assets.demo3} alt="Demo - Pago" className="rounded-xl shadow-sm" />
         </div>
