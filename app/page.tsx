@@ -274,7 +274,7 @@ export default function Page() {
 
                 <div className="mt-8 flex items-center gap-4 opacity-90">
                   <img src={BUSINESS.assets.icon} alt="Icono PideLocal" className="h-8 w-8" />
-                  <span className="text-sm text-white/90">Sin comisiones por pedido • 100% tu marca</span>
+                  <span className="text-sm text-white/90">Sin comisiones por pedido.</span>
                 </div>
               </div>
             </div>
@@ -463,7 +463,7 @@ export default function Page() {
         <div className="grid md:grid-cols-3 gap-6">
           <div className="rounded-2xl p-6 bg-brand-light">
             <h3 className="font-semibold">Sin permanencia</h3>
-            <p className="text-sm mt-2 text-brand-dark/80">Cancela cuando quieras. (Puedes contratar 3 meses al inicio con mejor precio.)</p>
+            <p className="text-sm mt-2 text-brand-dark/80">Cancela cuando quieras.</p>
           </div>
           <div className="rounded-2xl p-6 bg-brand-light">
             <h3 className="font-semibold">14 días de satisfacción</h3>
@@ -471,7 +471,7 @@ export default function Page() {
           </div>
           <div className="rounded-2xl p-6 bg-brand-light">
             <h3 className="font-semibold">En marcha en 48 h</h3>
-            <p className="text-sm mt-2 text-brand-dark/80">Compromiso de implantación exprés. Si no llegamos, te compensamos.</p>
+            <p className="text-sm mt-2 text-brand-dark/80">Compromiso de implantación exprés.</p>
           </div>
         </div>
       </section>
@@ -576,7 +576,7 @@ export default function Page() {
             </form>
 
             <p className="text-xs mt-4 text-brand-dark/60">
-              Al enviar este formulario, nos pondremos en contacto contigo por email o teléfono si nos lo facilitas.
+              Al enviar este formulario, nos pondremos en contacto contigo, puedes especificarnos tu preferencia.
             </p>
           </div>
         </div>
