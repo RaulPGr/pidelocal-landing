@@ -33,8 +33,10 @@ function writeConsent(c: Consent) {
   // Consent Mode v2 (solo analytics aquí)
   // @ts-ignore
   window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
-  function gtag() { (window as any).dataLayer.push(arguments as any); }
+  // Define gtag local con tipo variádico para TS
+  const gtag = (...args: any[]) => {
+    (window as any).dataLayer.push(args);
+  };
   gtag("consent", "update", {
     analytics_storage: c.analytics ? "granted" : "denied",
     ad_user_data: "denied",
@@ -155,4 +157,3 @@ export default function CookieConsent() {
     </>
   );
 }
-
