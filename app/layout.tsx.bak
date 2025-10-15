@@ -1,9 +1,9 @@
 ﻿/* app/layout.tsx
-   Layout raíz con:
-   - Metadatos SEO (título, descripción, OG, Twitter)
-   - Canonical (metadataBase) -> cámbiala cuando tengas dominio propio
+   Layout raÃ­z con:
+   - Metadatos SEO (tÃ­tulo, descripciÃ³n, OG, Twitter)
+   - Canonical (metadataBase) -> cÃ¡mbiala cuando tengas dominio propio
    - Favicon
-   - Cookie banner + GA4 con consentimiento
+   - Google Analytics (GA4)
    - JSON-LD Organization
    - Fondo beige claro de sitio completo
 */
@@ -11,17 +11,15 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
-import CookieConsent from '../components/CookieConsent'
-import Analytics from '../components/Analytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// Cambia esto cuando conectes dominio propio (ej: https://pidelocal.com)
+// â›³ï¸ Cambia esto cuando conectes dominio propio (ej: https://pidelocal.com)
 const SITE_URL = 'https://pidelocal.vercel.app'
 
-// Metadatos (ajusta libremente)
+// âœ… Metadatos (ajusta libremente)
 export const metadata: Metadata = {
-  title: 'PideLocal — Tu restaurante online en minutos',
+  title: 'PideLocal â€” Tu restaurante online en minutos',
   description:
     'Crea la web de tu restaurante, muestra tu carta, recibe pedidos y cobra con tu propia marca. Sin comisiones por pedido.',
   metadataBase: new URL(SITE_URL),
@@ -29,14 +27,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: SITE_URL,
-    title: 'PideLocal — Tu restaurante online en minutos',
-    description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
-    images: ['/brand/hero-mock.png'], // asegúrate de tener esta imagen
+    title: 'PideLocal â€” Tu restaurante online en minutos',
+    description: 'Pedidos online sin comisiones por pedido. DiseÃ±o responsive, pagos y gestiÃ³n sencillos.',
+    images: ['/brand/hero-mock.png'], // asegÃºrate de tener esta imagen
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PideLocal — Tu restaurante online en minutos',
-    description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
+    title: 'PideLocal â€” Tu restaurante online en minutos',
+    description: 'Pedidos online sin comisiones por pedido. DiseÃ±o responsive, pagos y gestiÃ³n sencillos.',
     images: ['/brand/hero-mock.png'],
   },
   icons: { icon: '/brand/icono-pidelocal.png' }, // favicon
@@ -46,6 +44,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className="h-full">
       <head>
+        {/* GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EH2DBM9Y3"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-EH2DBM9Y3', { debug_mode: true });
+          `}
+        </Script>
+
         {/* JSON-LD Organization */}
         <Script id="org-jsonld" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
@@ -55,7 +67,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             url: SITE_URL,
             logo: `${SITE_URL}/brand/icono-pidelocal.png`,
             sameAs: [
+              // aÃ±ade tus redes cuando las tengas
               'https://www.instagram.com/pidelocalweb/',
+              // 'https://www.facebook.com/tuusuario',
+              // 'https://www.linkedin.com/company/tuusuario',
+              // 'https://www.tiktok.com/@tuusuario',
             ],
             contactPoint: [{
               '@type': 'ContactPoint',
@@ -68,14 +84,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       </head>
 
-      {/* Fondo beige claro + tipografía */}
+      {/* ðŸŽ¨ Fondo beige claro + tipografÃ­a */}
       <body className={`${inter.className} min-h-screen bg-[#fdfaf6] text-gray-900 antialiased`}>
-        {/* Banner/Preferencias de cookies */}
-        <CookieConsent />
-        {/* Analytics solo se carga si hay consentimiento */}
-        <Analytics />
         {children}
       </body>
     </html>
   )
 }
+
+
