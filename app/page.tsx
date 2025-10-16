@@ -106,7 +106,7 @@ const STEPS: Step[] = [
 const FAQS: FAQ[] = [
   { q: '¿Hay permanencia?', a: 'No. Funcionamos mes a mes.' },
   { q: '¿Cargáis nuestro menú?', a: 'Sí. Durante la implantación te ayudamos con la carga inicial.' },
-  { q: '¿Puedo usar mi dominio?', a: 'Sí, conectamos tu dominio (ej. tudominio.com) a tu web.' },
+  { q: '¿Puedo usar mi dominio?', a: 'Sí, si lo deseas gestionamos tu propio dominio. Consulta condiciones' },
   { q: '¿Pagos con tarjeta?', a: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' },
 ];
 
