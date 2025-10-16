@@ -88,7 +88,7 @@ const FEATURES: Feature[] = [
   { title: 'Diseño responsive móvil', desc: 'Optimizada para móvil: donde se realizan la mayoría de pedidos.' },
   { title: 'Pagos con tarjeta y efectivo', desc: 'Premium permite cobro con tarjeta online (comisiones Stripe).' },
   { title: 'Panel de gestión sencillo', desc: 'Edita tu carta, agota stock, confirma pedidos sin complicaciones.' },
-  { title: 'Conecta tu dominio y SEO básico', desc: '100% tu marca.' },
+  { title: 'Conecta tu dominio', desc: 'Si lo deseas podemos crear 100% tu marca.' },
 ];
 
 // ===============================
