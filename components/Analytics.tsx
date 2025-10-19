@@ -2,7 +2,9 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
-const GA_MEASUREMENT_ID = "G-EH2DBM9Y3"; // TODO: Sustituye por tu ID si cambia
+// Usa variable de entorno para el ID de GA (recomendado en Vercel)
+// Si no está definida, usa el valor por defecto indicado aquí.
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-ERP85C8MRS";
 const STORAGE_KEY = "cookie-consent-v1";
 
 function analyticsAllowed(): boolean {
@@ -56,4 +58,3 @@ export default function Analytics() {
     </>
   );
 }
-
