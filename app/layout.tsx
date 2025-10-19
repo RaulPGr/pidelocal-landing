@@ -16,27 +16,27 @@ import Analytics from '../components/Analytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// Cambia esto cuando conectes dominio propio (ej: https://pidelocal.com)
-const SITE_URL = 'https://pidelocal.vercel.app'
+// Dominio del sitio (ajustado a tu dominio final)
+const SITE_URL = 'https://www.pidelocal.es'
 
 // Metadatos (ajusta libremente)
 export const metadata: Metadata = {
-  title: 'PideLocal — Tu restaurante online en minutos',
+  title: 'Crea la web de tu restaurante y recibe pedidos directos | PideLocal',
   description:
-    'Crea la web de tu restaurante, muestra tu carta, recibe pedidos y cobra con tu propia marca. Sin comisiones por pedido.',
+    'Muestra tu carta, acepta pedidos y cobra online con tu marca. Sin comisiones por pedido. Implantación rápida y soporte. Pide una demo gratis.',
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
-    title: 'PideLocal — Tu restaurante online en minutos',
-    description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
+    title: 'Crea la web de tu restaurante y recibe pedidos directos | PideLocal',
+    description: 'Muestra tu carta, acepta pedidos y cobra online con tu marca. Sin comisiones por pedido. Implantación rápida y soporte. Pide una demo gratis.',
     images: ['/brand/hero-mock.png'], // asegúrate de tener esta imagen
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PideLocal — Tu restaurante online en minutos',
-    description: 'Pedidos online sin comisiones por pedido. Diseño responsive, pagos y gestión sencillos.',
+    title: 'Crea la web de tu restaurante y recibe pedidos directos | PideLocal',
+    description: 'Muestra tu carta, acepta pedidos y cobra online con tu marca. Sin comisiones por pedido. Implantación rápida y soporte. Pide una demo gratis.',
     images: ['/brand/hero-mock.png'],
   },
   icons: { icon: '/brand/icono-pidelocal.png' }, // favicon
@@ -64,6 +64,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               areaServed: 'ES',
               availableLanguage: ['es']
             }]
+          })}
+        </Script>
+        {/* JSON-LD FAQPage (mejora de rich results sin cambios visuales) */}
+        <Script id="faq-jsonld" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: '¿Hay permanencia?',
+                acceptedAnswer: { '@type': 'Answer', text: 'No. Funcionamos mes a mes.' }
+              },
+              {
+                '@type': 'Question',
+                name: '¿Cargáis nuestro menú?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Sí. Durante la implantación te ayudamos con la carga inicial.' }
+              },
+              {
+                '@type': 'Question',
+                name: '¿Puedo usar mi dominio?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Sí, conectamos tu dominio (ej. tudominio.com) a tu web.' }
+              },
+              {
+                '@type': 'Question',
+                name: '¿Pagos con tarjeta?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' }
+              }
+            ]
           })}
         </Script>
       </head>

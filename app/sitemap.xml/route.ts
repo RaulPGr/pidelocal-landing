@@ -2,7 +2,7 @@
    Sitemap básico para una landing "one-page".
    Añade más rutas si más adelante tienes páginas nuevas.
 */
-const SITE_URL = 'https://pidelocal.vercel.app'
+const SITE_URL = 'https://www.pidelocal.es'
 
 export function GET() {
   const now = new Date().toISOString()
@@ -13,7 +13,11 @@ export function GET() {
     '/#ejemplos',
     '/#precios',
     '/#faq',
-    '/#contacto'
+    '/#contacto',
+    // Páginas legales
+    '/aviso-legal',
+    '/privacidad',
+    '/cookies'
   ].map(u => {
     // Quita el hash en el <loc> (Google no usa anchors)
     const loc = `${SITE_URL}${u.replace('#','')}`
