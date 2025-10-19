@@ -58,6 +58,9 @@ export default function CookieConsent() {
       setConsent(saved);
       setPrefAnalytics(saved.analytics);
       setShowBanner(false);
+      // Importante: reenviar el estado de consentimiento a GA en cada carga
+      // para levantar el modo consent a "granted" si procede.
+      writeConsent(saved);
     } else {
       setShowBanner(true);
     }
