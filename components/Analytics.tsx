@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // Usa variable de entorno para el ID de GA (recomendado en Vercel)
 // Si no está definida, usa el valor por defecto indicado aquí.
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-ERP85C8MRS";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 const STORAGE_KEY = "cookie-consent-v1";
 
 function analyticsAllowed(): boolean {
@@ -27,7 +27,7 @@ export default function Analytics() {
     return () => window.removeEventListener("cookie-consent-changed", onChange as any);
   }, []);
 
-  if (!enabled) return null;
+  if (!enabled || !GA_MEASUREMENT_ID) return null;
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function Analytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);} 
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', { debug_mode: true });
+          gtag('config', '${GA_MEASUREMENT_ID}', { debug_mode: true, anonymize_ip: true });
         `}
       </Script>
     </>

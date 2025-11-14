@@ -95,6 +95,67 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ]
           })}
         </Script>
+
+        {/* JSON-LD WebSite + SearchAction (no afecta al UI) */}
+        <Script id="website-jsonld" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'PideLocal',
+            url: SITE_URL,
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${SITE_URL}/?q={search_term_string}`,
+              'query-input': 'required name=search_term_string'
+            }
+          })}
+        </Script>
+
+        {/* JSON-LD Product + Offer (planes) */}
+        <Script id="product-jsonld" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: 'PideLocal - Planes',
+            brand: { '@type': 'Brand', name: 'PideLocal' },
+            url: SITE_URL,
+            description:
+              'Planes de suscripción para recibir pedidos online con tu propia marca. Sin comisiones por pedido.',
+            offers: {
+              '@type': 'AggregateOffer',
+              priceCurrency: 'EUR',
+              lowPrice: '19',
+              highPrice: '49',
+              offerCount: 3,
+              offers: [
+                {
+                  '@type': 'Offer',
+                  name: 'Starter',
+                  price: '19',
+                  priceCurrency: 'EUR',
+                  availability: 'https://schema.org/InStock',
+                  url: `${SITE_URL}/#precios`
+                },
+                {
+                  '@type': 'Offer',
+                  name: 'Medium',
+                  price: '29',
+                  priceCurrency: 'EUR',
+                  availability: 'https://schema.org/InStock',
+                  url: `${SITE_URL}/#precios`
+                },
+                {
+                  '@type': 'Offer',
+                  name: 'Premium',
+                  price: '49',
+                  priceCurrency: 'EUR',
+                  availability: 'https://schema.org/InStock',
+                  url: `${SITE_URL}/#precios`
+                }
+              ]
+            }
+          })}
+        </Script>
       </head>
 
       {/* Fondo beige claro + tipografía */}

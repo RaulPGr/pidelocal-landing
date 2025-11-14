@@ -463,7 +463,7 @@ export default function Page() {
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Página de inicio + datos del restaurante</li>
                 <li>✓ Carta/menú visible (sin pedidos online)</li>
-                <li>✓ 1 actualización gratuita al mes</li>
+                <li>✓ Configuración negocio </li>
               </ul>
               <a
                 href="#contacto"
@@ -485,6 +485,8 @@ export default function Page() {
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Starter</li>
                 <li>✓ Panel de gestión de productos (añadir/editar/agotar)</li>
+                <li>✓ Recepción y gestión de reservas (Web y Telegram)</li>
+                <li></li>
               </ul>
               <a
                 href="#contacto"
