@@ -110,6 +110,13 @@ const FAQS: FAQ[] = [
   { q: '¿Pagos con tarjeta?', a: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' },
 ];
 
+const VAT_RATE = 0.21;
+const formatPriceWithVAT = (amount: number) =>
+  `${(amount * (1 + VAT_RATE)).toLocaleString('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}${BUSINESS.pricing.currency}`;
+
 // ===============================
 // 📊 GA4: sistema robusto (cola + logs)
 // (Funciona aunque gtag tarde en estar disponible)
@@ -439,6 +446,9 @@ export default function Page() {
           <p className="text-center mt-3 text-brand-dark/80">
             Transparente y sin sorpresas. Sin permanencia. Implantación rápida.
           </p>
+          <p className="text-center mt-2 text-sm text-brand-dark/70">
+            Precios sin IVA. Indicamos también la cuota estimada con IVA (21 %) para tu referencia.
+          </p>
 
           {/* Banda promo (opcional) */}
           {BUSINESS.pricing.launchPromo && (
@@ -459,6 +469,9 @@ export default function Page() {
               <p className="mt-2 text-4xl font-extrabold tracking-tight">
                 {BUSINESS.pricing.starter}{BUSINESS.pricing.currency}
                 <span className="text-base font-medium text-brand-dark/70"> /mes</span>
+              </p>
+              <p className="mt-1 text-sm text-brand-dark/70">
+                {formatPriceWithVAT(BUSINESS.pricing.starter)} /mes con IVA (21 %)
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Página de inicio + datos del restaurante</li>
@@ -482,6 +495,9 @@ export default function Page() {
                 {BUSINESS.pricing.medium}{BUSINESS.pricing.currency}
                 <span className="text-base font-medium text-brand-dark/70"> /mes</span>
               </p>
+              <p className="mt-1 text-sm text-brand-dark/70">
+                {formatPriceWithVAT(BUSINESS.pricing.medium)} /mes con IVA (21 %)
+              </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Starter</li>
                 <li>✓ Panel de gestión de productos (añadir/editar/agotar)</li>
@@ -504,6 +520,9 @@ export default function Page() {
               <p className="mt-2 text-4xl font-extrabold tracking-tight">
                 {BUSINESS.pricing.premium}{BUSINESS.pricing.currency}
                 <span className="text-base font-medium text-brand-dark/70"> /mes</span>
+              </p>
+              <p className="mt-1 text-sm text-brand-dark/70">
+                {formatPriceWithVAT(BUSINESS.pricing.premium)} /mes con IVA (21 %)
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Medium</li>
