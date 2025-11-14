@@ -116,19 +116,19 @@ const LIVE_SITES: LiveSite[] = [
     label: 'Hamburguesería',
     badge: 'Street food',
     url: 'https://burger.pidelocal.es/',
-    desc: 'Carta visual con combos, alérgenos y pedidos directos.',
+    desc: 'Simulación de carta con combos destacados y pedido directo desde la web.',
   },
   {
     label: 'Comidas para llevar',
     badge: 'Take away',
     url: 'https://comidallevar.pidelocal.es/',
-    desc: 'Pedidos programados, menús diarios y recogida ágil.',
+    desc: 'Ejemplo de menús diarios listos para reservar y recoger en local.',
   },
   {
     label: 'Pizzería napolitana',
-    badge: 'Delivery',
+    badge: 'Carta gourmet',
     url: 'https://pizzerianapolitana.pidelocal.es/',
-    desc: 'Producto premium, extras personalizables y pago online.',
+    desc: 'Carta premium con fotografías y pedidos confirmados desde cualquier dispositivo.',
   },
 ];
 
@@ -465,9 +465,9 @@ export default function Page() {
       <section className="bg-brand-light/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold [text-wrap:balance]">Visita negocios reales PideLocal</h2>
+            <h2 className="text-3xl md:text-4xl font-bold [text-wrap:balance]">Explora ejemplos interactivos</h2>
             <p className="text-brand-dark/80 mt-3">
-              Abre cualquiera de estos casos en vivo y visualiza cómo se vería tu carta con nuestra plataforma.
+              Son demos creadas por nuestro equipo para visualizar cómo podría verse tu negocio en PideLocal.
             </p>
           </div>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
@@ -492,7 +492,7 @@ export default function Page() {
                   </span>
                 </div>
                 <p className="mt-6 text-xs text-brand-dark/60">
-                  Experiencia navegable completa · Actualizado en tiempo real
+                  Demo inspiracional · No corresponde a un negocio real
                 </p>
               </a>
             ))}
