@@ -13,6 +13,7 @@ import { useMemo, useState, useEffect } from 'react';
 type Feature = { title: string; desc: string };
 type Step = { num: string; title: string; desc: string };
 type FAQ = { q: string; a: string };
+type LiveSite = { label: string; url: string; desc: string; badge: string };
 
 // ===============================
 // 🔧 BLOQUE EDITABLE (marca & negocio)
@@ -108,6 +109,27 @@ const FAQS: FAQ[] = [
   { q: '¿Cargáis nuestro menú?', a: 'Sí. Durante la implantación te ayudamos con la carga inicial.' },
   { q: '¿Puedo usar mi dominio?', a: 'Sí, si lo deseas gestionamos tu propio dominio. Consulta condiciones' },
   { q: '¿Pagos con tarjeta?', a: 'Sí, en el plan Premium. Las comisiones de Stripe se aplican según su tarifa.' },
+];
+
+const LIVE_SITES: LiveSite[] = [
+  {
+    label: 'Hamburguesería',
+    badge: 'Street food',
+    url: 'https://burger.pidelocal.es/',
+    desc: 'Carta visual con combos, alérgenos y pedidos directos.',
+  },
+  {
+    label: 'Comidas para llevar',
+    badge: 'Take away',
+    url: 'https://comidallevar.pidelocal.es/',
+    desc: 'Pedidos programados, menús diarios y recogida ágil.',
+  },
+  {
+    label: 'Pizzería napolitana',
+    badge: 'Delivery',
+    url: 'https://pizzerianapolitana.pidelocal.es/',
+    desc: 'Producto premium, extras personalizables y pago online.',
+  },
 ];
 
 const VAT_RATE = 0.21;
@@ -436,6 +458,45 @@ export default function Page() {
           </div>
           <img src={BUSINESS.assets.demo2} alt="Demo - Menú" className="rounded-xl shadow-sm" />
           <img src={BUSINESS.assets.demo3} alt="Demo - Pago" className="rounded-xl shadow-sm" />
+        </div>
+      </section>
+
+      {/* ====== CASOS EN VIVO ====== */}
+      <section className="bg-brand-light/50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold [text-wrap:balance]">Visita negocios reales PideLocal</h2>
+            <p className="text-brand-dark/80 mt-3">
+              Abre cualquiera de estos casos en vivo y visualiza cómo se vería tu carta con nuestra plataforma.
+            </p>
+          </div>
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {LIVE_SITES.map((site) => (
+              <a
+                key={site.url}
+                href={site.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group rounded-2xl bg-white p-6 border border-black/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition transform"
+              >
+                <span className="inline-flex items-center text-xs font-semibold uppercase tracking-wide text-brand-green/80 bg-brand-green/10 px-3 py-1 rounded-full">
+                  {site.badge}
+                </span>
+                <div className="mt-4 flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-2xl font-bold text-brand-dark">{site.label}</p>
+                    <p className="text-sm mt-2 text-brand-dark/75">{site.desc}</p>
+                  </div>
+                  <span className="text-sm font-semibold text-brand-green flex items-center gap-1 whitespace-nowrap">
+                    Ver demo&nbsp;&rarr;
+                  </span>
+                </div>
+                <p className="mt-6 text-xs text-brand-dark/60">
+                  Experiencia navegable completa · Actualizado en tiempo real
+                </p>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
