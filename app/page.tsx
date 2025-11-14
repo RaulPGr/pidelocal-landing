@@ -463,7 +463,7 @@ export default function Page() {
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Página de inicio + datos del restaurante</li>
                 <li>✓ Carta/menú visible (sin pedidos online)</li>
-                <li>✓ Configuración negocio </li>
+              
               </ul>
               <a
                 href="#contacto"
@@ -507,7 +507,7 @@ export default function Page() {
               </p>
               <ul className="mt-4 text-sm space-y-2">
                 <li>✓ Todo Medium</li>
-                <li>✓ Recibir pedidos online</li>
+                <li>✓ Recepción y gestión de pedidos (Web y Telegram)</li>
                 <li>✓ Estadísticas de ventas</li>
               </ul>
               <a
