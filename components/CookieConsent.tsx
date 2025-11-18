@@ -38,7 +38,7 @@ function writeConsent(c: Consent) {
   window.dataLayer = window.dataLayer || [];
   // @ts-ignore
   const gtag = (...args: any[]) => {
-    // Si ya existe window.gtag (cargado por GA), la usamos
+    // Si ya existe window.gtag (cargado por GA), la usamos..
     if (typeof (window as any).gtag === "function") {
       (window as any).gtag(...args);
     } else {
