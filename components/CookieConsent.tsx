@@ -27,34 +27,12 @@ function readConsent(): Consent | null {
 }
 
 function writeConsent(c: Consent) {
+  // Guardamos la preferencia en localStorage
   localStorage.setItem(STORAGE_KEY, JSON.stringify(c));
-  // Notifica a listeners (Analytics, etc.)
+  // Notificamos a quien quiera escuchar (aunque ahora Analytics ya no lo usa)
   window.dispatchEvent(new CustomEvent("cookie-consent-changed", { detail: c }));
-  // Consent Mode v2 (solo analytics aquí)
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-    // Usa la gtag global si existe, si no, encola en dataLayer
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
-  const gtag = (...args: any[]) => {
-    // Si ya existe window.gtag (cargado por GA), la usamos..
-    if (typeof (window as any).gtag === "function") {
-      (window as any).gtag(...args);
-    } else {
-      // Si aún no está cargado, encolamos en dataLayer como hace el snippet oficial
-      (window as any).dataLayer.push(args);
-    }
-  };
-
-  gtag("consent", "update", {
-    analytics_storage: c.analytics ? "granted" : "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    ad_storage: "denied",
-  });
-
 }
+
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState<Consent | null>(null);
